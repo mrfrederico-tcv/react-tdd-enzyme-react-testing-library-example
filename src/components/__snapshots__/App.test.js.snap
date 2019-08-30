@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App render correctly 1`] = `
+<styled.div>
+  <styled.h4>
+    Gift Giver
+  </styled.h4>
+  <styled.div
+    testId="GiftContainer"
+  />
+  <Button
+    active={false}
+    disabled={false}
+    onClick={[Function]}
+    testId="Button"
+    type="button"
+    variant="primary"
+  >
+    Add Gift
+  </Button>
+</styled.div>
+`;
