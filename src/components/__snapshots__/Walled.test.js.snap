@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Wallet renders properly 1`] = `
+<styled.div>
+  <styled.h3
+    testID="Title"
+  >
+    Wallet balance: 
+    10
+  </styled.h3>
+  <styled.br />
+  <styled.input
+    onChange={[Function]}
+    testID="Input"
+  />
+  <styled.button
+    onClick={[Function]}
+    testID="DepositBtn"
+  >
+    Deposit
+  </styled.button>
+  <styled.button
+    onClick={[Function]}
+    testID="WithdrawBtn"
+  >
+    Withdraw
+  </styled.button>
+</styled.div>
+`;
