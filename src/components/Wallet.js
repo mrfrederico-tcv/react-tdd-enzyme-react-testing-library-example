@@ -38,13 +38,16 @@ export class Wallet extends Component {
 
     return (
       <Root>
-        <Title testID="Title">Wallet balance: {balance}</Title>
+        <Title data-testid="title">Wallet balance: {balance}</Title>
         <Separator />
-        <Input testID="Input" onChange={this.handleUpdateBalance} />
-        <Button testID="DepositBtn" onClick={this.handleDeposit}>
+        <Input
+          aria-label="deposit-withdraw-input"
+          onChange={this.handleUpdateBalance}
+        />
+        <Button role="deposit" onClick={this.handleDeposit}>
           Deposit
         </Button>
-        <Button testID="WithdrawBtn" onClick={this.handleWithdraw}>
+        <Button role="withdraw" onClick={this.handleWithdraw}>
           Withdraw
         </Button>
       </Root>

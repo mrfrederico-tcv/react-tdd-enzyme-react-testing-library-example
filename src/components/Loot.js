@@ -22,9 +22,7 @@ export class Loot extends Component {
   }
 
   render() {
-    return (
-      <Title testID="Title">Bitcoin balance: {this.computeBitcoin()}</Title>
-    )
+    return <Title>Bitcoin balance: {this.computeBitcoin()}</Title>
   }
 }
 

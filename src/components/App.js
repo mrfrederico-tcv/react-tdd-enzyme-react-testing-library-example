@@ -23,7 +23,7 @@ class App extends Component {
         <CoinDeskContainer>
           Powered by{' '}
           <CoindeskLink
-            testID="CoindeskLink"
+            data-testid="coindesk-link"
             target="_blank"
             href={COINDESK_LINK}
           >

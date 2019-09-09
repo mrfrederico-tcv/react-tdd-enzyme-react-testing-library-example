@@ -1,24 +1,66 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App renders properly 1`] = `
-<styled.div>
-  <styled.h4>
+<div
+  class=""
+>
+  <h4
+    class=""
+  >
     Loot Check
-  </styled.h4>
-  <styled.hr />
-  <Connect(Wallet) />
-  <styled.hr />
-  <Connect(Loot) />
-  <styled.div>
+  </h4>
+  <hr
+    class=""
+  />
+  <div
+    class=""
+  >
+    <h3
+      class=""
+      data-testid="title"
+    >
+      Wallet balance: 
+      0
+    </h3>
+    <br
+      class=""
+    />
+    <input
+      aria-label="deposit-withdraw-input"
+      class=""
+    />
+    <button
+      class=""
+      role="deposit"
+    >
+      Deposit
+    </button>
+    <button
+      class=""
+      role="withdraw"
+    >
+      Withdraw
+    </button>
+  </div>
+  <h3
+    class=""
+  >
+    Bitcoin balance: 
+    
+  </h3>
+  <div
+    class=""
+  >
     Powered by
      
-    <styled.a
+    <a
+      class=""
+      data-testid="coindesk-link"
       href="https://www.coindesk.com/price"
       target="_blank"
-      testID="CoindeskLink"
     >
       Coindesk
-    </styled.a>
-  </styled.div>
-</styled.div>
+    </a>
+  </div>
+</div>
 `;

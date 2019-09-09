@@ -1,37 +1,28 @@
+import 'jest-styled-components'
 import React from 'react'
-import { shallow, mount } from 'enzyme'
 import { Loot } from './Loot'
+import { render } from '../utils/testUtils'
 
 describe('Loot', () => {
-  let props = { balance: 10, bitcoin: {} }
-  let loot = shallow(<Loot {...props} />)
+  const mockFetchBitcoin = jest.fn()
+  let props = { balance: 10, bitcoin: {}, fetchBitcoin: mockFetchBitcoin }
 
   it('renders properly', () => {
-    expect(loot).toMatchSnapshot()
-  })
+    const { container } = render(<Loot {...props} />)
 
-  describe('when mounted', () => {
-    const mockFetchBitcoin = jest.fn()
-
-    beforeEach(() => {
-      props.fetchBitcoin = mockFetchBitcoin
-      loot = mount(<Loot {...props} />)
-    })
-
-    it('dispatches the `fetchBitcoin()` method it receives from props', () => {
-      expect(mockFetchBitcoin).toHaveBeenCalled()
-    })
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   describe('when there are valid bitcoin props', () => {
-    beforeEach(() => {
-      props = { balance: 10, bitcoin: { bpi: { USD: { rate: '1,000' } } } }
-      loot = shallow(<Loot {...props} />)
-    })
-
     it('displays the correct bitcoin value', () => {
+      props = {
+        ...props,
+        bitcoin: { bpi: { USD: { rate: '1,000' } } },
+      }
+      const { getByText } = render(<Loot {...props} />)
       const TEXT = 'Bitcoin balance: 0.01'
-      expect(loot.find('[testID="Title"]').text()).toEqual(TEXT)
+
+      expect(getByText(TEXT)).toBeTruthy()
     })
   })
 })
