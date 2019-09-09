@@ -1,22 +1,66 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App render correctly 1`] = `
-<styled.div>
-  <styled.h4>
-    Gift Giver
-  </styled.h4>
-  <styled.div
-    testId="GiftContainer"
-  />
-  <Button
-    active={false}
-    disabled={false}
-    onClick={[Function]}
-    testId="Button"
-    type="button"
-    variant="primary"
+exports[`App renders properly 1`] = `
+<div
+  class=""
+>
+  <h4
+    class=""
   >
-    Add Gift
-  </Button>
-</styled.div>
+    Loot Check
+  </h4>
+  <hr
+    class=""
+  />
+  <div
+    class=""
+  >
+    <h3
+      class=""
+      data-testid="title"
+    >
+      Wallet balance: 
+      0
+    </h3>
+    <br
+      class=""
+    />
+    <input
+      aria-label="deposit-withdraw-input"
+      class=""
+    />
+    <button
+      class=""
+      role="deposit"
+    >
+      Deposit
+    </button>
+    <button
+      class=""
+      role="withdraw"
+    >
+      Withdraw
+    </button>
+  </div>
+  <h3
+    class=""
+  >
+    Bitcoin balance: 
+    
+  </h3>
+  <div
+    class=""
+  >
+    Powered by
+     
+    <a
+      class=""
+      data-testid="coindesk-link"
+      href="https://www.coindesk.com/price"
+      target="_blank"
+    >
+      Coindesk
+    </a>
+  </div>
+</div>
 `;

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loot renders properly 1`] = `
+<h3
+  class=""
+>
+  Bitcoin balance: 
+  
+</h3>
+`;

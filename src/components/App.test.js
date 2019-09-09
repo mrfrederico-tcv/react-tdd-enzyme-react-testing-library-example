@@ -1,68 +1,76 @@
+// *** INTEGRATION TESTS ***
+import 'jest-styled-components'
 import React from 'react'
-import { shallow } from 'enzyme'
+
 import App from './App'
+import { render, fireEvent } from '../utils/testUtils'
+
+const setup = store => {
+  const utils = render(<App />, store)
+
+  const input = utils.getByLabelText('deposit-withdraw-input')
+  const depositBtn = utils.getByRole('deposit')
+  const withdrawBtn = utils.getByRole('withdraw')
+
+  return {
+    ...utils,
+    input,
+    depositBtn,
+    withdrawBtn,
+  }
+}
 
 describe('App', () => {
-  const app = shallow(<App />)
+  it('renders properly', () => {
+    const { container } = render(<App />)
 
-  it('render correctly', () => {
-    expect(app).toMatchSnapshot()
+    expect(container.firstChild).toMatchSnapshot()
   })
 
-  it('init the `state` with an empty list of gifts', () => {
-    const { gifts } = app.state()
-    expect(gifts).toEqual([])
+  it('contains the initial wallet balance', () => {
+    const { getByText } = render(<App />)
+    const TEXT = 'Wallet balance: 0'
+
+    expect(getByText(TEXT)).toBeTruthy()
   })
 
-  describe('when clicking the `add gift` button', () => {
-    const ID = 1
+  it('contains the initial bitcoin balance', async () => {
+    const { findByText } = render(<App />)
+    const TEXT = 'Bitcoin balance: 0'
 
+    expect(await findByText(TEXT)).toBeTruthy()
+  })
+
+  it('contains a link to the coindesk price page', () => {
+    const { getByText, getByTestId } = render(<App />)
+    const TEXT = 'Powered by'
+    const COINDESK_LINK = 'https://www.coindesk.com/price'
+
+    expect(getByText(TEXT)).toBeTruthy()
+    expect(getByTestId('coindesk-link').href).toBe(COINDESK_LINK)
+  })
+
+  describe('when the user types into wallet input', () => {
+    let utils
     beforeEach(() => {
-      app.find('[testId="Button"]').simulate('click')
+      const USER_BALANCE = '25'
+      const EVENT = { target: { value: USER_BALANCE } }
+
+      utils = setup()
+      fireEvent.change(utils.input, EVENT)
     })
 
-    afterEach(() => {
-      app.setState({ gifts: [] })
-    })
+    afterEach(() => {})
 
-    it('adds a new gift to `state`', () => {
-      const { gifts } = app.state()
-      expect(gifts).toEqual([{ id: ID }])
-    })
+    it('makes a deposit & a withdraw', () => {
+      const DEPOSIT_TEXT = 'Wallet balance: 25'
+      const WITHDRAW_TEXT = 'Wallet balance: 0'
 
-    it('adds a new gift to the render list', () => {
-      expect(app.find('[testId="GiftContainer"]').children().length).toEqual(1)
-    })
+      fireEvent.click(utils.depositBtn)
+      expect(utils.getByText(DEPOSIT_TEXT)).toBeTruthy()
 
-    it('creates a Gift component', () => {
-      expect(app.find('[testId="Gift"]').exists()).toBe(true)
-    })
-
-    describe('and the user wants to remove the added gift', () => {
-      beforeEach(() => {
-        app.instance().handleRemoveGift(ID)
-      })
-
-      it('removes the gift from `state`', () => {
-        const { gifts } = app.state()
-        expect(gifts).toEqual([])
-      })
-    })
-  })
-
-  describe('when clicking the `add gift` twice', () => {
-    beforeEach(() => {
-      app.find('[testId="Button"]').simulate('click')
-      app.find('[testId="Button"]').simulate('click')
-    })
-
-    it('creates a second gift with an id=2', () => {
-      const { gifts } = app.state()
-
-      const secondGift = gifts[1]
-
-      expect(secondGift).toBeDefined()
-      expect(secondGift.id).toEqual(2)
+      fireEvent.click(utils.withdrawBtn)
+      expect(utils.getByText(WITHDRAW_TEXT)).toBeTruthy()
     })
   })
 })

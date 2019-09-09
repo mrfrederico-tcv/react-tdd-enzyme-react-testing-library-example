@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Wallet renders properly 1`] = `
+<div
+  class=""
+>
+  <h3
+    class=""
+    data-testid="title"
+  >
+    Wallet balance: 
+    10
+  </h3>
+  <br
+    class=""
+  />
+  <input
+    aria-label="deposit-withdraw-input"
+    class=""
+  />
+  <button
+    class=""
+    role="deposit"
+  >
+    Deposit
+  </button>
+  <button
+    class=""
+    role="withdraw"
+  >
+    Withdraw
+  </button>
+</div>
+`;
